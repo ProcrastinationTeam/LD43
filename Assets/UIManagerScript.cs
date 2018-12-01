@@ -59,8 +59,4 @@ public class UIManagerScript : MonoBehaviour {
     {
         giftSlider.value = value;
     }
-
-    
-
-
 }

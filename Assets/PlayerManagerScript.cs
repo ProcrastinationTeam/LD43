@@ -17,8 +17,6 @@ public class PlayerManagerScript : MonoBehaviour {
 
     float timerForFuel = 0.0f;
 
-    public UIManagerScript uiManagerScript;
-
     public int score = 0;
 
 	// Use this for initialization
@@ -42,15 +40,6 @@ public class PlayerManagerScript : MonoBehaviour {
         {
             Shoot();
         }
-
-        //timerForFuel += Time.deltaTime;
-        //if(timerForFuel > 1.0f)
-        //{
-            //timerForFuel = 0.0f;
-            
-       // }
-
-
     }
 
     public void IncreaseWantedIndicator(int value)
