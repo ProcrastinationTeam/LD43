@@ -19,7 +19,7 @@ public class SantaController : MonoBehaviour {
     private HidingSpotScript hidingSpot;
 
     // MOVEMENT
-    private bool canJump = true;
+    public bool canJump = true;
     private float baseGravity;
 
     // STAIRS
@@ -27,6 +27,9 @@ public class SantaController : MonoBehaviour {
 
     // FIREPLACE(S)
     private List<FireplaceScript> fireplaces = new List<FireplaceScript>();
+
+    // CHILDREN BEDS
+    private List<ChildBedScript> childrenBeds = new List<ChildBedScript>();
 
     // COMPONENTS
     private Rigidbody2D rb;
@@ -148,4 +151,22 @@ public class SantaController : MonoBehaviour {
     {
         Debug.Log("CASSE TOI");
     }
+
+    // CHILDREN BEDS
+    public void SetChildBed(ChildBedScript childBed)
+    {
+        childrenBeds.Add(childBed);
+    }
+
+    public void UnsetChildBed(ChildBedScript childBed)
+    {
+        childrenBeds.Remove(childBed);
+    }
+
+    void UseChildBed()
+    {
+        Debug.Log("COUCOU, TU VEUX VOIR MON GIFT ?");
+    }
+    
+    
 }
