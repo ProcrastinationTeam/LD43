@@ -6,20 +6,34 @@ public class CameraScript : MonoBehaviour {
 
     public SantaController santaController;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(santaController.canJump)
+    private Vector3 velocity = Vector3.zero;
+    public float smoothTime;
+
+    /*
+    public BoxCollider2D cameraBounds;
+    private float horzExtent;*/
+
+    // Use this for initialization
+    void Start () {
+        /*horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
+        Debug.Log(horzExtent);*/
+    }
+
+    // Update is called once per frame
+    void Update () {
+        Vector3 targetPosition;
+        
+        if (santaController.canJump)
         {
-            transform.position = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 1.25f, -10);
+            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 1.25f, -10);
         } else
         {
-            transform.position = new Vector3(santaController.transform.position.x, transform.position.y, -10);
+            targetPosition = new Vector3(santaController.transform.position.x, transform.position.y, -10);
         }
-        
+
+        Vector3 newPosition = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+        /*newPosition.x = Mathf.Clamp(newPosition.x, cameraBounds.transform.position.x, cameraBounds.transform.position.x + cameraBounds.size.x);*/
+
+        transform.position = newPosition;
     }
 }

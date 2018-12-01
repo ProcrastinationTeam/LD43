@@ -35,11 +35,16 @@ public class SantaController : MonoBehaviour {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
+    // 
+    //public FireplaceScript startingFireplace;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         baseGravity = rb.gravityScale;
+
+        //transform.position = startingFireplace.transform.position;
     }
 	
 	// Update is called once per frame
