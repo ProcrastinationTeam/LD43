@@ -5,13 +5,18 @@ using UnityEngine;
 public class HidingSpotScript : MonoBehaviour {
 
     public bool containsSanta;
+    private Sprite originalSprite;
+    public Sprite alternativeSprite;
 
     private ParticleSystem ps;
+    private SpriteRenderer sr;
 
 	// Use this for initialization
 	void Start () {
         ps = GetComponentInChildren<ParticleSystem>();
         ps.enableEmission = false;
+        sr = GetComponent<SpriteRenderer>();
+        originalSprite = sr.sprite;
     }
 	
 	// Update is called once per frame
@@ -33,11 +38,13 @@ public class HidingSpotScript : MonoBehaviour {
     {
         containsSanta = true;
         ps.enableEmission = true;
+        sr.sprite = alternativeSprite;
     }
 
     public void OnSantaExits()
     {
         containsSanta = false;
         ps.enableEmission = false;
+        sr.sprite = originalSprite;
     }
 }
