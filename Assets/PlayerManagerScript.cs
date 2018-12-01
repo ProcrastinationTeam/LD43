@@ -8,7 +8,7 @@ public class PlayerManagerScript : MonoBehaviour {
     public int wantedIndicator = 0;
 
     int maxGift = 100;
-    public int currentGiftCount = 5;
+    public int currentGiftCount = 50;
 
     public float fuelPerSecond = 2.0f;
 
