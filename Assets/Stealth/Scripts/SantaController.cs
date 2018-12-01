@@ -31,6 +31,8 @@ public class SantaController : MonoBehaviour {
     // CHILDREN BEDS
     private List<ChildBedScript> childrenBeds = new List<ChildBedScript>();
 
+    private int childrenCount = 0;
+
     // COMPONENTS
     private Rigidbody2D rb;
     private SpriteRenderer sr;
@@ -89,7 +91,14 @@ public class SantaController : MonoBehaviour {
             {
                 UseFireplace();
             }
+            // CHILDREN BEDS
+            else if (childrenBeds.Count != 0)
+            {
+                UseChildBed();
+            }
         }
+
+        Debug.Log(childrenCount);
     }
 
     public void TouchedGround()
@@ -170,6 +179,8 @@ public class SantaController : MonoBehaviour {
 
     void UseChildBed()
     {
+        childrenBeds[0].OnSantaKidnaps();
+        childrenCount++;
         Debug.Log("COUCOU, TU VEUX VOIR MON GIFT ?");
     }
     

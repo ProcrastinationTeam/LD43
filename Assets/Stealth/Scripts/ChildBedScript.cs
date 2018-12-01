@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChildBedScript : MonoBehaviour {
 
+    public Sprite emptyBedSprite;
+    public bool empty = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -16,11 +19,20 @@ public class ChildBedScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().SetChildBed(this);
+        if(!empty)
+        {
+            col.gameObject.GetComponent<SantaController>().SetChildBed(this);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
         col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
+    }
+
+    public void OnSantaKidnaps()
+    {
+        GetComponent<SpriteRenderer>().sprite = emptyBedSprite;
+        empty = true;
     }
 }
