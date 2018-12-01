@@ -379,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -454}
-  m_SizeDelta: {x: 160, y: 103}
+  m_AnchoredPosition: {x: 42.2, y: -454}
+  m_SizeDelta: {x: 1078, y: 103}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1638047033
 MonoBehaviour:
@@ -414,7 +414,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Guillaume Ambrois - Maxime - Lucas TIxier
+  m_Text: Guillaume Ambrois - Maxime Comptier - Lucas TIxier
 --- !u!222 &1638047034
 CanvasRenderer:
   m_ObjectHideFlags: 0
