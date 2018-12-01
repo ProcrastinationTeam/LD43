@@ -5,19 +5,30 @@ using System;
 
 public class SantaController : MonoBehaviour {
 
+    // MOVEMENT
     public float speed;
     public float jumpForce;
     public float afterJumpGravity;
 
 
-    private List<HidingSpotScript> hidingSpots = new List<HidingSpotScript>();
 
+
+    // HIDING SPOTS
+    private List<HidingSpotScript> hidingSpots = new List<HidingSpotScript>();
     private bool hidden = false;
     private HidingSpotScript hidingSpot;
 
+    // MOVEMENT
     private bool canJump = true;
     private float baseGravity;
 
+    // STAIRS
+    private List<StairsScript> stairs = new List<StairsScript>();
+
+    // FIREPLACE(S)
+    private List<FireplaceScript> fireplaces = new List<FireplaceScript>();
+
+    // COMPONENTS
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
@@ -32,7 +43,7 @@ public class SantaController : MonoBehaviour {
 	void Update () {
         float moveHorizontal = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
-        bool hide = Input.GetButtonDown("Fire1");
+        bool action = Input.GetButtonDown("Fire1");
 
         if(Math.Abs(moveHorizontal) >= 0.15 && !hidden)
         {
@@ -49,7 +60,7 @@ public class SantaController : MonoBehaviour {
             rb.gravityScale = afterJumpGravity;
         }
 
-        if(hide)
+        if(action)
         {
             // HIDE
             if (hidingSpots.Count != 0 && !hidden)
@@ -61,6 +72,15 @@ public class SantaController : MonoBehaviour {
             {
                 Unhide();
             }
+            // STAIRS
+            else if(stairs.Count != 0) {
+                UseStairs();
+            }
+            // FIREPLACE(S)
+            else if (fireplaces.Count != 0)
+            {
+                UseFireplace();
+            }
         }
     }
 
@@ -70,6 +90,7 @@ public class SantaController : MonoBehaviour {
         rb.gravityScale = baseGravity;
     }
 
+    // HIDING SPOT
     public void SetHidingSpot(HidingSpotScript hidingSpot)
     {
         hidingSpots.Add(hidingSpot);
@@ -94,5 +115,37 @@ public class SantaController : MonoBehaviour {
         hidingSpot = null;
         hidden = false;
         sr.enabled = true;
+    }
+
+    // STAIRS
+    public void SetStairs(StairsScript stairsScript)
+    {
+        stairs.Add(stairsScript);
+    }
+
+    public void UnsetStairs(StairsScript stairsScript)
+    {
+        stairs.Remove(stairsScript);
+    }
+
+    void UseStairs()
+    {
+        transform.position = stairs[0].otherStairsScript.transform.position;
+    }
+
+    // FIREPLACE(S)
+    public void SetFireplace(FireplaceScript fireplace)
+    {
+        fireplaces.Add(fireplace);
+    }
+
+    public void UnsetFireplace(FireplaceScript fireplace)
+    {
+        fireplaces.Remove(fireplace);
+    }
+
+    void UseFireplace()
+    {
+        Debug.Log("CASSE TOI");
     }
 }
