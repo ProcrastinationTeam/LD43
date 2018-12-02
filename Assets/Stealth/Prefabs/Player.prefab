@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 114448926943634402}
   - component: {fileID: 50753115054477144}
   - component: {fileID: 70606207463627738}
+  - component: {fileID: 95845213475342882}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -78,6 +79,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.2, y: 0}
   m_Size: {x: 0.81, y: 1.88}
   m_Direction: 0
+--- !u!95 &95845213475342882
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163984891575856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e24275573763794d9f583524982694d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114448926943634402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,6 +111,7 @@ MonoBehaviour:
   speed: 15
   jumpForce: 5000
   afterJumpGravityMultiplier: 5
+  hidden: 0
   canJump: 1
 --- !u!212 &212262527320416688
 SpriteRenderer:
