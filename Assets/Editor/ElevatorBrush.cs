@@ -5,20 +5,20 @@ using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(true, false, false, "InteractibleObject")]
-    public class InteractibleObjectBrush : GridBrush
+    [CustomGridBrush(true, false, false, "Elevator")]
+    public class ElevatorBrush : GridBrush
     {
-        public GameObject objectPrefab;
-        Transform interactivObjectTilemap;
+        public GameObject ElevatorPrefab;
+        Transform ElevatorTilemap;
 
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var obj = PrefabUtility.InstantiatePrefab(objectPrefab) as GameObject;
+            var obj = PrefabUtility.InstantiatePrefab(ElevatorPrefab) as GameObject;
             obj.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocal(position));
             obj.transform.position = new Vector3(obj.transform.position.x + 0.5f, obj.transform.position.y, obj.transform.position.z); // Technique de sioux
 
-            interactivObjectTilemap = GameObject.Find("InteractibleObjects").transform;
-            obj.transform.SetParent(interactivObjectTilemap.transform);
+            ElevatorTilemap = GameObject.Find("Elevators").transform;
+            obj.transform.SetParent(ElevatorTilemap.transform);
 
             Undo.RegisterCreatedObjectUndo(obj, "Create");
         }
@@ -30,12 +30,13 @@ namespace UnityEditor
 
         public override void Erase(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var objPosList = brushTarget.GetComponentsInChildren<Transform>();
-            foreach (var obj in objPosList)
+            var ElevatorsPosList = brushTarget.GetComponentsInChildren<Transform>();
+            foreach (var elevator in ElevatorsPosList)
             {
-                if (obj.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
+
+                if (elevator.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
                 {
-                    DestroyImmediate(obj.gameObject);
+                    DestroyImmediate(elevator.gameObject);
                     break;
                 }
             }
