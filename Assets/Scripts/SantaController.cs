@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 public class SantaController : MonoBehaviour {
 
@@ -9,9 +11,6 @@ public class SantaController : MonoBehaviour {
     public float speed;
     public float jumpForce;
     public float afterJumpGravityMultiplier;
-
-
-
 
     // HIDING SPOTS
     private List<HidingSpotScript> hidingSpots = new List<HidingSpotScript>();
@@ -29,9 +28,11 @@ public class SantaController : MonoBehaviour {
     private List<FireplaceScript> fireplaces = new List<FireplaceScript>();
 
     // CHILDREN BEDS
-    private List<ChildBedScript> childrenBeds = new List<ChildBedScript>();
+    private List<ChildBedScript> childrenBedsInReach = new List<ChildBedScript>();
 
-    private int childrenCount = 0;
+    private bool hasChild = false;
+    public int numberOfChildrenKidnaped = 0;
+    public int numberOfChildrenBeds;
 
     // COMPONENTS
     private Rigidbody2D rb;
@@ -39,6 +40,9 @@ public class SantaController : MonoBehaviour {
 
     //ANIMATION
     private Animator animator;
+
+    // UI
+    UIScript ui;
 
     // 
     //public FireplaceScript startingFireplace;
@@ -51,6 +55,9 @@ public class SantaController : MonoBehaviour {
         baseGravity = rb.gravityScale;
 
         //transform.position = startingFireplace.transform.position;
+        numberOfChildrenBeds = GameObject.FindGameObjectsWithTag("ChildBed").Length;
+
+        ui = GameObject.Find("Canvas").GetComponent<UIScript>();
     }
 	
 	// Update is called once per frame
@@ -108,7 +115,7 @@ public class SantaController : MonoBehaviour {
                 UseFireplace();
             }
             // CHILDREN BEDS
-            else if (childrenBeds.Count != 0)
+            else if (childrenBedsInReach.Count != 0)
             {
                 UseChildBed();
             }
@@ -191,26 +198,69 @@ public class SantaController : MonoBehaviour {
 
     void UseFireplace()
     {
-        Debug.Log("CASSE TOI");
+        if(hasChild)
+        {
+            numberOfChildrenKidnaped++;
+            hasChild = false;
+            ui.OnSantaReleased();
+            if (numberOfChildrenKidnaped == numberOfChildrenBeds)
+            {
+                // C'était le dernier gosse
+                // Afficher un message indiquant qu'il faut se casser
+            }
+        } else
+        {
+            if(numberOfChildrenKidnaped > 0)
+            {
+                GoToNextScene();
+            } else
+            {
+                ui.OnSantaTriesToExitWithoutChild();
+            }
+        }
+    }
+
+    void GoToNextScene()
+    {
+        if (numberOfChildrenBeds == numberOfChildrenKidnaped)
+        {
+            // Beaucoup de points
+        } else
+        {
+            // Moins de points
+        }
+
+        int sceneNumber = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneNumber + 1);
+        
+        /*
+        string sceneName = SceneManager.GetActiveScene().name;
+        int sceneNumber = Int32.Parse(Regex.Match(sceneName, @"\d+").Value);
+        SceneManager.LoadScene("House_" + (sceneNumber + 1));
+        */
     }
 
     // CHILDREN BEDS
     public void SetChildBed(ChildBedScript childBed)
     {
-        childrenBeds.Add(childBed);
+        childrenBedsInReach.Add(childBed);
     }
 
     public void UnsetChildBed(ChildBedScript childBed)
     {
-        childrenBeds.Remove(childBed);
+        childrenBedsInReach.Remove(childBed);
     }
 
     void UseChildBed()
     {
-        childrenBeds[0].OnSantaKidnaps();
-        childrenCount++;
-        Debug.Log("COUCOU, TU VEUX VOIR MON GIFT ?");
+        if(!hasChild)
+        {
+            hasChild = true;
+            childrenBedsInReach[0].OnSantaKidnaps();
+            ui.OnSantaSnatched();
+        } else
+        {
+            Debug.Log("TODO: Message d'erreur");
+        } 
     }
-    
-    
 }

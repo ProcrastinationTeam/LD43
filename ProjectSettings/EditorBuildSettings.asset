@@ -9,9 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/RetryScene.unity
+    guid: b4d2c82defc6d854ea637e6750bdd4cf
+  - enabled: 1
     path: Assets/Scenes/Houses/House_1.unity
     guid: f635fbfa3dd2a284f92c86735c9f6a96
   - enabled: 1
-    path: Assets/Scenes/RetryScene.unity
-    guid: b4d2c82defc6d854ea637e6750bdd4cf
+    path: Assets/Scenes/Houses/House_2.unity
+    guid: e0cfd03cd16a9324797387d44032ac81
+  - enabled: 1
+    path: Assets/Scenes/Houses/House_3.unity
+    guid: b8aa8758acdc323479e2e9ccf5242aad
+  - enabled: 1
+    path: Assets/Scenes/Houses/House_4.unity
+    guid: 4aafcedc14d1f9f42a13f5149bc20db0
   m_configObjects: {}
