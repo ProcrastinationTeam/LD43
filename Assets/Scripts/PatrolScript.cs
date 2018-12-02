@@ -45,7 +45,7 @@ public class PatrolScript : MonoBehaviour {
 
         Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
 
-        seesPlayer = false;
+        //seesPlayer = false;
 
         
 
@@ -77,20 +77,26 @@ public class PatrolScript : MonoBehaviour {
 
                 if (!visionBlocked && ((rb.velocity.x > 0.0f && dir.x > 0.0f) || (rb.velocity.x < 0.0f && dir.x < 0.0f)))
                 {
-                    seesPlayer = true;
-                    if (!audioS.isPlaying)
+                    
+                    if (!audioS.isPlaying && !seesPlayer)
                     {
                         audioS.Play();
                     }
+                    seesPlayer = true;
 
-                    //Debug.Log("I SEE YOU");
+                    Debug.Log("I SEE YOU");
+                } else
+                {
+                    seesPlayer = false;
                 }
             }   
+        } else
+        {
+            seesPlayer = false;
         }
 
         if (seesPlayer)
         {
-            
             goingRight = transform.position.x < santa.gameObject.transform.position.x;
         }
         else
