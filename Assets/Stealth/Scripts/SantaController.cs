@@ -8,7 +8,7 @@ public class SantaController : MonoBehaviour {
     // MOVEMENT
     public float speed;
     public float jumpForce;
-    public float afterJumpGravity;
+    public float afterJumpGravityMultiplier;
 
 
 
@@ -67,7 +67,7 @@ public class SantaController : MonoBehaviour {
         {
             rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
             canJump = false;
-            rb.gravityScale = afterJumpGravity;
+            rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
         }
 
         if(action)
@@ -98,7 +98,19 @@ public class SantaController : MonoBehaviour {
             }
         }
 
-        Debug.Log(childrenCount);
+        Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
+        Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
+        RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider);
+            TouchedGround();
+        } else
+        {
+            canJump = false;
+            rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
+        }
     }
 
     public void TouchedGround()
