@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Door
   - Interactible Object
+  - ChildBed
   layers:
   - Default
   - TransparentFX

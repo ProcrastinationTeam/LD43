@@ -8,13 +8,10 @@ public class HidingSpotScript : MonoBehaviour {
     private Sprite originalSprite;
     public Sprite alternativeSprite;
 
-    private ParticleSystem ps;
     private SpriteRenderer sr;
 
 	// Use this for initialization
 	void Start () {
-        ps = GetComponentInChildren<ParticleSystem>();
-        ps.enableEmission = false;
         sr = GetComponent<SpriteRenderer>();
         originalSprite = sr.sprite;
     }
@@ -37,14 +34,12 @@ public class HidingSpotScript : MonoBehaviour {
     public void OnSantaEnters()
     {
         containsSanta = true;
-        ps.enableEmission = true;
         sr.sprite = alternativeSprite;
     }
 
     public void OnSantaExits()
     {
         containsSanta = false;
-        ps.enableEmission = false;
         sr.sprite = originalSprite;
     }
 }
