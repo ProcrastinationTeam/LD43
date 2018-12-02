@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
-    public SantaController santaController;
+    private SantaController santaController;
 
     private Vector3 velocity = Vector3.zero;
     public float smoothTime;
@@ -17,6 +17,7 @@ public class CameraScript : MonoBehaviour {
     void Start () {
         /*horzExtent = Camera.main.orthographicSize * Screen.width / Screen.height;
         Debug.Log(horzExtent);*/
+        santaController = GameObject.FindGameObjectWithTag("Player").GetComponent<SantaController>();
     }
 
     // Update is called once per frame
