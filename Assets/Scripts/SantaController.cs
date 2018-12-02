@@ -5,7 +5,8 @@ using System;
 using UnityEngine.SceneManagement;
 using System.Text.RegularExpressions;
 
-public class SantaController : MonoBehaviour {
+public class SantaController : MonoBehaviour
+{
 
     // MOVEMENT
     public float speed;
@@ -52,7 +53,8 @@ public class SantaController : MonoBehaviour {
     //public FireplaceScript startingFireplace;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -65,18 +67,19 @@ public class SantaController : MonoBehaviour {
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         float moveHorizontal = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
         bool action = Input.GetButtonDown("Fire1");
 
-        if(Math.Abs(moveHorizontal) >= 0.15 && !hidden)
+        if (Math.Abs(moveHorizontal) >= 0.15 && !hidden)
         {
             animator.SetFloat("velocity", 0.5f);
-            rb.velocity = new Vector2(moveHorizontal > 0 ? speed : -speed,  rb.velocity.y);
-            if(moveHorizontal > 0.0f)
+            rb.velocity = new Vector2(moveHorizontal > 0 ? speed : -speed, rb.velocity.y);
+            if (moveHorizontal > 0.0f)
             {
                 sr.flipX = false;
             }
@@ -84,20 +87,21 @@ public class SantaController : MonoBehaviour {
             {
                 sr.flipX = true;
             }
-        } else
+        }
+        else
         {
             animator.SetFloat("velocity", -1f);
-            rb.velocity = new Vector2(0,                                    rb.velocity.y);
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
         }
-        
-        if(canJump && jump && !hidden)
+
+        if (canJump && jump && !hidden)
         {
             rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
             LeftGround();
         }
 
-        if(action)
+        if (action)
         {
             // HIDE
             if (hidingSpots.Count != 0 && !hidden)
@@ -110,7 +114,8 @@ public class SantaController : MonoBehaviour {
                 Unhide();
             }
             // STAIRS
-            else if(stairs.Count != 0) {
+            else if (stairs.Count != 0)
+            {
                 UseStairs();
             }
             // FIREPLACE(S)
@@ -131,11 +136,12 @@ public class SantaController : MonoBehaviour {
 
         if (hit.collider != null)
         {
-            if(!canJump)
+            if (!canJump)
             {
                 TouchedGround();
             }
-        } else
+        }
+        else
         {
             // On commence à tomber
             if (canJump)
@@ -231,7 +237,7 @@ public class SantaController : MonoBehaviour {
 
     void UseFireplace()
     {
-        if(hasChild)
+        if (hasChild)
         {
             numberOfChildrenKidnaped++;
             hasChild = false;
@@ -241,12 +247,14 @@ public class SantaController : MonoBehaviour {
                 // C'était le dernier gosse
                 // Afficher un message indiquant qu'il faut se casser
             }
-        } else
+        }
+        else
         {
-            if(numberOfChildrenKidnaped > 0)
+            if (numberOfChildrenKidnaped > 0)
             {
                 GoToNextScene();
-            } else
+            }
+            else
             {
                 ui.OnSantaTriesToExitWithoutChild();
             }
@@ -258,14 +266,15 @@ public class SantaController : MonoBehaviour {
         if (numberOfChildrenBeds == numberOfChildrenKidnaped)
         {
             // Beaucoup de points
-        } else
+        }
+        else
         {
             // Moins de points
         }
 
         int sceneNumber = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneNumber + 1);
-        
+
         /*
         string sceneName = SceneManager.GetActiveScene().name;
         int sceneNumber = Int32.Parse(Regex.Match(sceneName, @"\d+").Value);
@@ -286,14 +295,16 @@ public class SantaController : MonoBehaviour {
 
     void UseChildBed()
     {
-        if(!hasChild)
+        if (!hasChild)
         {
             hasChild = true;
             childrenBedsInReach[0].OnSantaKidnaps();
             ui.OnSantaSnatched();
-        } else
+        }
+        else
         {
             Debug.Log("TODO: Message d'erreur");
-        } 
+        }
     }
+
 }

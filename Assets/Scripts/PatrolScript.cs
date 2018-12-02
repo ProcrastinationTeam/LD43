@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PatrolScript : MonoBehaviour {
 
@@ -63,9 +64,7 @@ public class PatrolScript : MonoBehaviour {
             //Physics2D.RaycastAll((headPosition, dir, contact, hits, 5f);
             if (hitPlayer.Length > 0)
             {
-                Debug.Log("HITS : " + hitPlayer.Length);
-                Debug.Log("TAGS :" + hitPlayer[0].collider.gameObject.tag);
-
+  
                 if (!hitPlayer[0].collider.gameObject.CompareTag("Player"))
                 {
                     visionBlocked = true;
@@ -84,7 +83,7 @@ public class PatrolScript : MonoBehaviour {
                         audioS.Play();
                     }
 
-                    Debug.Log("I SEE YOU");
+                    //Debug.Log("I SEE YOU");
                 }
             }   
         }
@@ -96,7 +95,7 @@ public class PatrolScript : MonoBehaviour {
         }
         else
         {
-            Debug.Log("WHERE HE IS");
+           // Debug.Log("WHERE HE IS");
             Vector2 origin = new Vector2(bounds.center.x, bounds.min.y);
             RaycastHit2D hit = Physics2D.Raycast(origin, rb.velocity, 0.5f, LayerMask.GetMask("Ground"));
 
@@ -110,10 +109,19 @@ public class PatrolScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(!seesPlayer && timeSinceLastStairs > timeBetweenStairs && Random.value > 0.1f && col.gameObject.CompareTag("Elevator"))
+        if(!seesPlayer && timeSinceLastStairs > timeBetweenStairs && Random.value > 0.1f && col.CompareTag("Elevator"))
         {
             transform.position = col.gameObject.GetComponent<StairsScript>().target.transform.position;
             timeSinceLastStairs = 0;
         }
+
+        Debug.Log("TRIGGER PATROL");
+        Debug.Log("TAG : " + col.tag );
+        if (seesPlayer && col.CompareTag("Player"))
+        {
+            Debug.Log("END GAME");
+            SceneManager.LoadScene("RetryScene");
+        }
+        
     }
 }
