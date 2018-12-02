@@ -18,11 +18,17 @@ public class StairsScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().SetStairs(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().SetStairs(this);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
+        }
     }
 }

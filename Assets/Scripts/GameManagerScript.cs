@@ -43,8 +43,6 @@ public class GameManagerScript : MonoBehaviour {
 
             playerTransform.position = new Vector3(fireplacesTransform[1].position.x, fireplacesTransform[1].position.y, fireplacesTransform[1].position.z);
 
-         
-
         }
     }
 
