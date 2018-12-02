@@ -8,7 +8,7 @@ public class PatrolScript : MonoBehaviour {
     public float speed;
     public float timeBetweenStairs;
 
-    private bool goingRight = Random.value > 0.5f;
+    private bool goingRight;
     private float timeSinceLastStairs = 0;
     private bool seesPlayer = false;
 
@@ -22,7 +22,9 @@ public class PatrolScript : MonoBehaviour {
         sr = GetComponent<SpriteRenderer>();
 
         santa = GameObject.FindGameObjectWithTag("Player").GetComponent<SantaController>();
-	}
+
+        goingRight = Random.value > 0.5f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
