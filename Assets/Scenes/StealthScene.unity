@@ -6419,11 +6419,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4261352367226090, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.64
+      value: -5.188
       objectReference: {fileID: 0}
     - target: {fileID: 4261352367226090, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.9
+      value: -0.917
       objectReference: {fileID: 0}
     - target: {fileID: 4261352367226090, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -6458,6 +6458,14 @@ Prefab:
     - target: {fileID: 1874803308727034, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
       propertyPath: m_Name
       value: ChildBed (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261352367226090, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261352367226090, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33c535e906c9319458b8ff2e4b32572d, type: 2}
