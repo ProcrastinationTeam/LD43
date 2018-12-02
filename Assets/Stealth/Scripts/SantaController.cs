@@ -15,7 +15,7 @@ public class SantaController : MonoBehaviour {
 
     // HIDING SPOTS
     private List<HidingSpotScript> hidingSpots = new List<HidingSpotScript>();
-    private bool hidden = false;
+    public bool hidden = false;
     private HidingSpotScript hidingSpot;
 
     // MOVEMENT
