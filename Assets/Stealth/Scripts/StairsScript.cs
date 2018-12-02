@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class StairsScript : MonoBehaviour {
 
-    public StairsScript otherStairsScript;
-    public SantaController santaController;
+    public StairsScript target;
 
     // Use this for initialization
     void Start () {
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

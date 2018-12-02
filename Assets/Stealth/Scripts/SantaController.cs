@@ -104,7 +104,6 @@ public class SantaController : MonoBehaviour {
 
         if (hit.collider != null)
         {
-            Debug.Log(hit.collider);
             TouchedGround();
         } else
         {
@@ -159,7 +158,7 @@ public class SantaController : MonoBehaviour {
 
     void UseStairs()
     {
-        transform.position = stairs[0].otherStairsScript.transform.position;
+        transform.position = stairs[0].target.transform.position;
     }
 
     // FIREPLACE(S)
