@@ -257,10 +257,10 @@ public class SantaController : MonoBehaviour {
     {
         if (numberOfChildrenBeds == numberOfChildrenKidnaped)
         {
-            // Beaucoup de points
+            // TODO: Beaucoup de points
         } else
         {
-            // Moins de points
+            // TODO: Moins de points
         }
 
         int sceneNumber = SceneManager.GetActiveScene().buildIndex;
