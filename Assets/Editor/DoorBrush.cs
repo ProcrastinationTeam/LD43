@@ -17,7 +17,7 @@ namespace UnityEditor
             door.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocal(position));
             door.transform.position = new Vector3(door.transform.position.x + 0.5f, door.transform.position.y, door.transform.position.z); // Technique de sioux
 
-            interactivObjectTilemap = GameObject.Find("InteractibleObjects").transform;
+            interactivObjectTilemap = GameObject.Find("Doors").transform;
             door.transform.SetParent(interactivObjectTilemap.transform);
 
             Undo.RegisterCreatedObjectUndo(door, "Create");
