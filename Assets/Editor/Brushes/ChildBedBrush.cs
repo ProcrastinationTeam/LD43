@@ -37,7 +37,6 @@ namespace UnityEditor
             var gameObjectsPosList = brushTarget.GetComponentsInChildren<Transform>();
             foreach (var gameobject in gameObjectsPosList)
             {
-
                 if (gameobject.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
                 {
                     DestroyImmediate(gameobject.gameObject);

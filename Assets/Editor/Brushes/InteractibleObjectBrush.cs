@@ -5,13 +5,13 @@ using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(true, false, false, "Enemy")]
-    public class EnemyBrush : GridBrush
+    [CustomGridBrush(true, false, false, "InteractibleObject")]
+    public class InteractibleObjectBrush : GridBrush
     {
         Transform tilemap;
 
-        string prefabPath = "Assets/Prefabs/Enemy.prefab";
-        string parentGameObjectName = "Enemies";
+        string prefabPath = "Assets/Prefabs/Table.prefab";
+        string parentGameObjectName = "InteractibleObjects";
 
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
@@ -37,7 +37,6 @@ namespace UnityEditor
             var gameObjectsPosList = brushTarget.GetComponentsInChildren<Transform>();
             foreach (var gameobject in gameObjectsPosList)
             {
-
                 if (gameobject.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
                 {
                     DestroyImmediate(gameobject.gameObject);

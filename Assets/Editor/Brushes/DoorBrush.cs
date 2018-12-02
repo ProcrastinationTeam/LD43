@@ -5,20 +5,24 @@ using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(true, false, false, "Elevator")]
-    public class ElevatorBrush : GridBrush
+    [CustomGridBrush(true, false, false, "Door")]
+    public class DoorBrush : GridBrush
     {
-        public GameObject ElevatorPrefab;
-        Transform ElevatorTilemap;
+        Transform tilemap;
+
+        string prefabPath = "Assets/Prefabs/Door.prefab";
+        string parentGameObjectName = "Doors";
 
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var obj = PrefabUtility.InstantiatePrefab(ElevatorPrefab) as GameObject;
+            GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(prefabPath, typeof(GameObject));
+
+            var obj = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
             obj.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocal(position));
             obj.transform.position = new Vector3(obj.transform.position.x + 0.5f, obj.transform.position.y, obj.transform.position.z); // Technique de sioux
 
-            ElevatorTilemap = GameObject.Find("Elevators").transform;
-            obj.transform.SetParent(ElevatorTilemap.transform);
+            tilemap = GameObject.Find(parentGameObjectName).transform;
+            obj.transform.SetParent(tilemap.transform);
 
             Undo.RegisterCreatedObjectUndo(obj, "Create");
         }
@@ -30,13 +34,12 @@ namespace UnityEditor
 
         public override void Erase(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var ElevatorsPosList = brushTarget.GetComponentsInChildren<Transform>();
-            foreach (var elevator in ElevatorsPosList)
+            var gameObjectsPosList = brushTarget.GetComponentsInChildren<Transform>();
+            foreach (var gameobject in gameObjectsPosList)
             {
-
-                if (elevator.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
+                if (gameobject.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
                 {
-                    DestroyImmediate(elevator.gameObject);
+                    DestroyImmediate(gameobject.gameObject);
                     break;
                 }
             }
