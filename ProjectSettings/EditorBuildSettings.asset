@@ -9,11 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/TopDownScene.unity
-    guid: 44a927ada8f49494fa4848306b09eb32
-  - enabled: 1
-    path: Assets/Scenes/StealthScene.unity
-    guid: 839129df3ee4a9c45822dee59e1017d1
+    path: Assets/Scenes/Houses/House_1.unity
+    guid: f635fbfa3dd2a284f92c86735c9f6a96
   - enabled: 1
     path: Assets/Scenes/RetryScene.unity
     guid: b4d2c82defc6d854ea637e6750bdd4cf

@@ -7,14 +7,13 @@ public class GameManagerScript : MonoBehaviour {
 
     public enum GameMod
     {
-        shmupMode,
         stealthMode,
     }
 
-
     public PlayerManagerScript playerManager;
+    SantaController santaController;
+    Transform playerTransform;
     bool isRunning = false;
-    bool shmupMode = false;
     bool stealthMode = false;
     GameMod currentGameMod;
 
@@ -23,28 +22,51 @@ public class GameManagerScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         DontDestroyOnLoad(this.gameObject);
-        currentGameMod = GameMod.shmupMode;
+        currentGameMod = GameMod.stealthMode;
         isRunning = true;
+        SceneManager.sceneLoaded += OnSceneLo;
+    }
 
+    void OnSceneLo(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+
+        var lvl = GameObject.Find("Grid");
+        if (lvl != null)
+        {
+            playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+            //santaController = GameObject.Find("Player").GetComponent<SantaController>();
+
+            var fireplaces = GameObject.Find("Fireplaces");
+
+            var fireplacesTransform = fireplaces.GetComponentsInChildren<Transform>();
+
+            playerTransform.position = new Vector3(fireplacesTransform[1].position.x, fireplacesTransform[1].position.y, fireplacesTransform[1].position.z);
+
+         
+
+        }
+    }
+
+    void Awake()
+    {
+     
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(playerManager.currentFuel <= 0)
-        {
-            Debug.Log("GAME OVER");
-            isRunning = false;
-            StartCoroutine(LoadEndScreen());
+		//if(playerManager.currentFuel <= 0)
+  //      {
+  //          Debug.Log("GAME OVER");
+  //          isRunning = false;
+  //          StartCoroutine(LoadEndScreen());
 
-        }
+  //      }
 
         if(isRunning)
         {
             switch (currentGameMod)
             {
-                case GameMod.shmupMode:
-
-                    break;
                 case GameMod.stealthMode:
                     break;
                 default:
@@ -64,6 +86,10 @@ public class GameManagerScript : MonoBehaviour {
         SceneManager.LoadScene("RetryScene");
     }
 
+    public void InitPlayerPos()
+    {
+
+    }
     
 
 }
