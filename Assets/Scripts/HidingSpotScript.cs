@@ -23,12 +23,18 @@ public class HidingSpotScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().SetHidingSpot(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().SetHidingSpot(this);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().UnsetHidingSpot(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().UnsetHidingSpot(this);
+        }
     }
 
     public void OnSantaEnters()
