@@ -38,6 +38,7 @@ public class SantaController : MonoBehaviour
     // COMPONENTS
     private Rigidbody2D rb;
     private SpriteRenderer sr;
+    private CapsuleCollider2D box2d;
 
     //ANIMATION
     private Animator animator;
@@ -57,6 +58,7 @@ public class SantaController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        box2d = GetComponent<CapsuleCollider2D>();
         animator = GetComponent<Animator>();
         baseGravity = rb.gravityScale;
 
@@ -198,6 +200,8 @@ public class SantaController : MonoBehaviour
         hidingSpot.OnSantaEnters();
         hidden = true;
         sr.enabled = false;
+        
+        Physics2D.IgnoreLayerCollision(9, 10, true);
     }
 
     void Unhide()
@@ -206,6 +210,9 @@ public class SantaController : MonoBehaviour
         hidingSpot = null;
         hidden = false;
         sr.enabled = true;
+        
+        Physics2D.IgnoreLayerCollision(9, 10, false);
+
     }
 
     // STAIRS
