@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48076683af927dd4bb06c83979089acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emptyBedSprite: {fileID: 0}
+  emptyBedSprite: {fileID: 21300000, guid: 41812dfe97797464aadd2f17db96b72f, type: 3}
   empty: 0
 --- !u!212 &212330895121737210
 SpriteRenderer:
