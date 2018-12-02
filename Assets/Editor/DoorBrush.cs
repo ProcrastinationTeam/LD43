@@ -9,14 +9,15 @@ namespace UnityEditor
     public class DoorBrush : GridBrush
     {
         public GameObject doorPrefab;
-        public Transform interactivObjectTilemap;
+        Transform interactivObjectTilemap;
 
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
             var door = PrefabUtility.InstantiatePrefab(doorPrefab) as GameObject;
             door.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocal(position));
+            door.transform.position = new Vector3(door.transform.position.x + 0.5f, door.transform.position.y, door.transform.position.z); // Technique de sioux
 
-            interactivObjectTilemap = GameObject.Find("EnemyTilemap").transform;
+            interactivObjectTilemap = GameObject.Find("InteractibleObjects").transform;
             door.transform.SetParent(interactivObjectTilemap.transform);
 
             Undo.RegisterCreatedObjectUndo(door, "Create");
