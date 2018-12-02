@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(true, false, false, "InteractivObject")]
+    [CustomGridBrush(true, false, false, "InteractibleObject")]
     public class InteractibleObjectBrush : GridBrush
     {
         public GameObject objectPrefab;

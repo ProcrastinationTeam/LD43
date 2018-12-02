@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Fireplace
   - Ground
+  - Door
+  - Interactible Object
   layers:
   - Default
   - TransparentFX
