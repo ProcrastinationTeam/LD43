@@ -44,6 +44,10 @@ public class SantaController : MonoBehaviour {
     // UI
     UIScript ui;
 
+    CameraScript camera;
+
+    IEnumerator goCameraGoCoroutine;
+
     // 
     //public FireplaceScript startingFireplace;
 
@@ -58,6 +62,8 @@ public class SantaController : MonoBehaviour {
         numberOfChildrenBeds = GameObject.FindGameObjectsWithTag("ChildBed").Length;
 
         ui = GameObject.Find("Canvas").GetComponent<UIScript>();
+
+        camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
     }
 	
 	// Update is called once per frame
@@ -87,10 +93,8 @@ public class SantaController : MonoBehaviour {
         
         if(canJump && jump && !hidden)
         {
-            animator.SetBool("isJumping", true);
             rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
-            canJump = false;
-            rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
+            LeftGround();
         }
 
         if(action)
@@ -123,15 +127,41 @@ public class SantaController : MonoBehaviour {
 
         Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
         Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
-        RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.1f, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.1f, LayerMask.GetMask("Ground", "OneWay"));
 
         if (hit.collider != null)
         {
-            TouchedGround();
+            if(!canJump)
+            {
+                TouchedGround();
+            }
         } else
         {
-            canJump = false;
-            rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
+            // On commence à tomber
+            if (canJump)
+            {
+                LeftGround();
+            }
+        }
+    }
+
+    void LeftGround()
+    {
+        animator.SetBool("isJumping", true);
+        canJump = false;
+        rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
+
+        goCameraGoCoroutine = GoCameraGo();
+        StartCoroutine(goCameraGoCoroutine);
+    }
+
+    IEnumerator GoCameraGo()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (!canJump)
+        {
+            camera.GoCameraGo();
+            Debug.Log("BENEN");
         }
     }
 
@@ -140,6 +170,9 @@ public class SantaController : MonoBehaviour {
         animator.SetBool("isJumping", false);
         canJump = true;
         rb.gravityScale = baseGravity;
+        camera.EasyGirl();
+        Debug.Log("STOP");
+        StopCoroutine(goCameraGoCoroutine);
     }
 
     // HIDING SPOT

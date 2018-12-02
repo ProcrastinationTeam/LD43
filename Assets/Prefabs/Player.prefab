@@ -58,7 +58,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 50
   m_AngularDrag: 0.05
-  m_GravityScale: 20
+  m_GravityScale: 8
   m_Material: {fileID: 6200000, guid: fce024f6e6e33084e8c0738a0130983d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -109,10 +109,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
-  jumpForce: 5000
+  jumpForce: 6000
   afterJumpGravityMultiplier: 5
   hidden: 0
   canJump: 1
+  numberOfChildrenKidnaped: 0
+  numberOfChildrenBeds: 0
 --- !u!212 &212262527320416688
 SpriteRenderer:
   m_ObjectHideFlags: 1

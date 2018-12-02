@@ -9,6 +9,8 @@ public class CameraScript : MonoBehaviour {
     private Vector3 velocity = Vector3.zero;
     public float smoothTime;
 
+    private bool catchUp = false;
+
     /*
     public BoxCollider2D cameraBounds;
     private float horzExtent;*/
@@ -20,16 +22,30 @@ public class CameraScript : MonoBehaviour {
         santaController = GameObject.FindGameObjectWithTag("Player").GetComponent<SantaController>();
     }
 
+    public void GoCameraGo()
+    {
+        catchUp = true;
+    }
+
+    public void EasyGirl()
+    {
+        catchUp = false;
+    }
+
     // Update is called once per frame
     void Update () {
         Vector3 targetPosition;
         
-        if (santaController.canJump)
+        if(catchUp)
         {
-            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 1.25f, -10);
+            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y - 3.5f,     -10);
+        }
+        else if (santaController.canJump)
+        {
+            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 1.25f,    -10);
         } else
         {
-            targetPosition = new Vector3(santaController.transform.position.x, transform.position.y, -10);
+            targetPosition = new Vector3(santaController.transform.position.x, transform.position.y,                            -10);
         }
 
         Vector3 newPosition = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
