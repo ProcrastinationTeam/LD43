@@ -37,6 +37,9 @@ public class SantaController : MonoBehaviour {
     private Rigidbody2D rb;
     private SpriteRenderer sr;
 
+    //ANIMATION
+    private Animator animator;
+
     // 
     //public FireplaceScript startingFireplace;
 
@@ -44,6 +47,7 @@ public class SantaController : MonoBehaviour {
     void Start () {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         baseGravity = rb.gravityScale;
 
         //transform.position = startingFireplace.transform.position;
@@ -57,14 +61,26 @@ public class SantaController : MonoBehaviour {
 
         if(Math.Abs(moveHorizontal) >= 0.15 && !hidden)
         {
+            animator.SetFloat("velocity", 0.5f);
             rb.velocity = new Vector2(moveHorizontal > 0 ? speed : -speed,  rb.velocity.y);
+            if(moveHorizontal > 0.0f)
+            {
+                sr.flipX = false;
+            }
+            else
+            {
+                sr.flipX = true;
+            }
         } else
         {
+            animator.SetFloat("velocity", -1f);
             rb.velocity = new Vector2(0,                                    rb.velocity.y);
+
         }
         
         if(canJump && jump && !hidden)
         {
+            animator.SetBool("isJumping", true);
             rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
             canJump = false;
             rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
@@ -114,6 +130,7 @@ public class SantaController : MonoBehaviour {
 
     public void TouchedGround()
     {
+        animator.SetBool("isJumping", false);
         canJump = true;
         rb.gravityScale = baseGravity;
     }

@@ -113,6 +113,29 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &208312426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1163984891575856, guid: 8aa65300577dbae4db1a90eaeb596a52,
+    type: 2}
+  m_PrefabInternal: {fileID: 1405563947}
+--- !u!95 &208312427
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 208312426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e24275573763794d9f583524982694d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &262260865
 GameObject:
   m_ObjectHideFlags: 0
@@ -1090,11 +1113,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4336413702434362, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -18.94
+      value: -18.95
       objectReference: {fileID: 0}
     - target: {fileID: 4336413702434362, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.38
+      value: -3.87
       objectReference: {fileID: 0}
     - target: {fileID: 4336413702434362, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1119,10 +1142,6 @@ Prefab:
     - target: {fileID: 4336413702434362, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1163984891575856, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa65300577dbae4db1a90eaeb596a52, type: 2}
