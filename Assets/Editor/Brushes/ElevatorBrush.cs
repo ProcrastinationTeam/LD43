@@ -5,20 +5,24 @@ using UnityEngine.Tilemaps;
 
 namespace UnityEditor
 {
-    [CustomGridBrush(true, false, false, "Fireplace")]
-    public class FireplaceBrush : GridBrush
+    [CustomGridBrush(true, false, false, "Elevator")]
+    public class ElevatorBrush : GridBrush
     {
-        public GameObject FirePrefab;
-        Transform FireplaceTilemap;
+        Transform tilemap;
+
+        string prefabPath = "Assets/Prefabs/Elevator.prefab";
+        string parentGameObjectName = "Elevators";
 
         public override void Paint(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var obj = PrefabUtility.InstantiatePrefab(FirePrefab) as GameObject;
+            GameObject prefab = (GameObject) AssetDatabase.LoadAssetAtPath(prefabPath, typeof(GameObject));
+
+            var obj = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
             obj.transform.position = gridLayout.LocalToWorld(gridLayout.CellToLocal(position));
             obj.transform.position = new Vector3(obj.transform.position.x + 0.5f, obj.transform.position.y, obj.transform.position.z); // Technique de sioux
 
-            FireplaceTilemap = GameObject.Find("Fireplaces").transform;
-            obj.transform.SetParent(FireplaceTilemap.transform);
+            tilemap = GameObject.Find(parentGameObjectName).transform;
+            obj.transform.SetParent(tilemap.transform);
 
             Undo.RegisterCreatedObjectUndo(obj, "Create");
         }
@@ -30,13 +34,12 @@ namespace UnityEditor
 
         public override void Erase(GridLayout gridLayout, GameObject brushTarget, Vector3Int position)
         {
-            var FireplacePosList = brushTarget.GetComponentsInChildren<Transform>();
-            foreach (var fireplace in FireplacePosList)
+            var gameObjectsPosList = brushTarget.GetComponentsInChildren<Transform>();
+            foreach (var gameobject in gameObjectsPosList)
             {
-
-                if (fireplace.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
+                if (gameobject.transform.position == gridLayout.LocalToWorld(gridLayout.CellToLocalInterpolated(position)))
                 {
-                    DestroyImmediate(fireplace.gameObject);
+                    DestroyImmediate(gameobject.gameObject);
                     break;
                 }
             }
