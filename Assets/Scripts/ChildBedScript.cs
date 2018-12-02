@@ -19,7 +19,7 @@ public class ChildBedScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(!empty)
+        if(!empty && col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetChildBed(this);
         }
@@ -27,11 +27,15 @@ public class ChildBedScript : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
+        }
     }
 
     public void OnSantaKidnaps()
     {
+
         GetComponent<SpriteRenderer>().sprite = emptyBedSprite;
         empty = true;
     }

@@ -16,11 +16,18 @@ public class FireplaceScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().SetFireplace(this);
+        if (col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().SetFireplace(this);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
+        if(col.gameObject.CompareTag("Player"))
+        {
+            col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
+        }
+        
     }
 }
