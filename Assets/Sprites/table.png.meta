@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: table_0
     21300002: table_1
+    21300004: table_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -100,7 +101,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0087c232a81b9fd449e69b856aeb816a
+      spriteID: 84f031a54feac584584222a4bd8bd967
       vertices: []
       indices: 
       edges: []
@@ -120,7 +121,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c840a6c2378e0634994baed89d9fa372
+      spriteID: 8789eaa4d5fb95546b173cac964bb210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: table_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9c08e65120c5647b237e118d736b90
       vertices: []
       indices: 
       edges: []

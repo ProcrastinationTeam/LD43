@@ -4,6 +4,7 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: sofa_0
     21300002: sofa_1
+    21300004: sofa_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -100,7 +101,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86873ec31e12ce7439609d8ff67b16b9
+      spriteID: 1808c6ab0ecd3d7409e290f0b07d20f0
       vertices: []
       indices: 
       edges: []
@@ -120,7 +121,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11f3990125639bc42b649effcb98ddd8
+      spriteID: 55ba5b3326469c045afc37f89ac41943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sofa_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39bc3ee8562ca5e4e849973cffb9eab8
       vertices: []
       indices: 
       edges: []
