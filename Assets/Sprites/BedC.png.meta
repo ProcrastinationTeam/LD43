@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: 081ce1a6b6d4b894e80f19ebefb1e680
+guid: 439371d3117524b4097a6bf33e32d17a
 TextureImporter:
   fileIDToRecycleName:
-    21300000: door32_0
-    21300002: door32_1
+    21300000: BedC_0
+    21300002: BedC_1
+    21300004: BedC_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -86,12 +87,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: door32_0
+      name: BedC_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -100,18 +101,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2ad6e45cb9e476f41840a53e3cb2b6be
+      spriteID: 8aea76ec5991265408758ba6184bdf7b
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: door32_1
+      name: BedC_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 48
         y: 0
-        width: 16
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -120,7 +121,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9d545f70ea073aa4d8a320fd0665498c
+      spriteID: 00872b1fa36aa264ebe90fff07a59abe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BedC_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1edc95b741db29148b557880c1c91402
       vertices: []
       indices: 
       edges: []
@@ -128,7 +149,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: af7e6951e2f44aa479b0f13821e1ab09
+    spriteID: 6a454e6c6ee52f74aad9def6a605cdc2
     vertices: []
     indices: 
     edges: []
