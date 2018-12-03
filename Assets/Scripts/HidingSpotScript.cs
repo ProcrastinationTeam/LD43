@@ -12,10 +12,13 @@ public class HidingSpotScript : MonoBehaviour {
     Sprite previous;
     SpriteRenderer sr;
 
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
         originalSprite = sr.sprite;
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -47,11 +50,13 @@ public class HidingSpotScript : MonoBehaviour {
     {
         containsSanta = true;
         sr.sprite = alternativeSprite;
+        audioSource.Play();
     }
 
     public void OnSantaExits()
     {
         containsSanta = false;
         sr.sprite = outlined;
+        audioSource.Play();
     }
 }

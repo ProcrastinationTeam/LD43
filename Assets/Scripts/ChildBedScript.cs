@@ -34,11 +34,11 @@ public class ChildBedScript : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (!empty)
+        if (col.gameObject.CompareTag("Player"))
         {
-            if (col.gameObject.CompareTag("Player"))
+            col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
+            if(!empty)
             {
-                col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
                 sr.sprite = previous;
             }
         }

@@ -15,6 +15,8 @@ public class StairsScript : MonoBehaviour {
     SpriteRenderer sr;
     Animator anim;
 
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
@@ -29,6 +31,8 @@ public class StairsScript : MonoBehaviour {
                 origins.Add(tempStairsScript);
             }
         }
+
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -73,5 +77,10 @@ public class StairsScript : MonoBehaviour {
             col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
             
         }
+    }
+
+    public void Use()
+    {
+        audioSource.Play();
     }
 }

@@ -19,9 +19,6 @@ public class UIScript : MonoBehaviour {
     string GoodJobContinue = "DELICIOUS!\nCONTINUE, BRING ME MORE!";
     string GoToFireplace = "MISSION ACCOMPLISHED!\nEXIT AT THE NEAREST FIREPLACE!";
 
-    
-    string useString = "B / x to use";
-
     // Use this for initialization
     void Start () {
         santaController = GameObject.FindGameObjectWithTag("Player").GetComponent<SantaController>();

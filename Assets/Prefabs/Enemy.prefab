@@ -148,7 +148,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 1e538710356e5a24088507d82f0dca2c, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.524
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 886588b5692b2514db12a17df199eb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5
   timeBetweenStairs: 3
   jumpForce: 8000
   stepChance: 0.5

@@ -8,10 +8,15 @@ public class FireplaceScript : MonoBehaviour {
 
     SpriteRenderer sr;
 
+    AudioSource audioSource;
+    public AudioClip merryChristmas;
+    public AudioClip byebyechild;
+
     // Use this for initialization
     void Start () {
         slurpAnim = GetComponent<Animator>();
         sr = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
     }
 	
 	// Update is called once per frame
@@ -42,5 +47,16 @@ public class FireplaceScript : MonoBehaviour {
     public void PlayAnim()
     {
         slurpAnim.SetTrigger("Use");
+        audioSource.clip = byebyechild;
+        audioSource.Play();
+
+        StartCoroutine(FoutageDeGueule());
+    }
+
+    IEnumerator FoutageDeGueule()
+    {
+        yield return new WaitForSeconds(1.7f);
+        audioSource.clip = merryChristmas;
+        audioSource.Play();
     }
 }

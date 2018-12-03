@@ -134,11 +134,11 @@ public class PatrolScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(!seesPlayer && timeSinceLastStairs > timeBetweenStairs && Random.value > 0.1f && col.CompareTag("Elevator"))
+        /*if(!seesPlayer && timeSinceLastStairs > timeBetweenStairs && Random.value > 0.1f && col.CompareTag("Elevator"))
         {
             transform.position = col.gameObject.GetComponent<StairsScript>().target.transform.position;
             timeSinceLastStairs = 0;
-        }
+        }*/
 
         if (seesPlayer && col.CompareTag("Player"))
         {

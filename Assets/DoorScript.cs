@@ -9,10 +9,13 @@ public class DoorScript : MonoBehaviour {
     public Sprite doorOpen;
     public Sprite doorClose;
 
+    AudioSource audioSource;
+
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
-	}
+        audioSource = GetComponent<AudioSource>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,12 +42,13 @@ public class DoorScript : MonoBehaviour {
     {
         isOpen = false;
         sr.sprite = doorClose;
+        audioSource.Play();
     }
 
         void OpenDoor()
     {
         isOpen = true;
         sr.sprite = doorOpen;
-
+        audioSource.Play();
     }
 }

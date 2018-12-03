@@ -52,6 +52,8 @@ public class SantaController : MonoBehaviour
 
     IEnumerator goCameraGoCoroutine;
 
+    AudioSource audioSource;
+
     // 
     //public FireplaceScript startingFireplace;
 
@@ -70,6 +72,8 @@ public class SantaController : MonoBehaviour
         ui = GameObject.Find("Canvas").GetComponent<UIScript>();
 
         camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -266,6 +270,7 @@ public class SantaController : MonoBehaviour
     void UseStairs()
     {
         transform.position = stairs[0].target.transform.position;
+        stairs[0].Use();
     }
 
     // FIREPLACE(S)
@@ -342,6 +347,7 @@ public class SantaController : MonoBehaviour
     {
         if (!hasChild)
         {
+            audioSource.Play();
             hasChild = true;
             animator.SetBool("hasChild", true);
             childrenBedsInReach[0].OnSantaKidnaps();
