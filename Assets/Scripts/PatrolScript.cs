@@ -83,22 +83,24 @@ public class PatrolScript : MonoBehaviour {
 
                 if (!visionBlocked && ((rb.velocity.x > 0.0f && dir.x > 0.0f) || (rb.velocity.x < 0.0f && dir.x < 0.0f)))
                 {
-                    
-                    if (!audioS.isPlaying && !seesPlayer)
+                    if(!seesPlayer)
                     {
-                        audioS.Play();
+                        OnSeesPlayer();
                     }
-                    seesPlayer = true;
-
-                    Debug.Log("I SEE YOU");
                 } else
                 {
-                    seesPlayer = false;
+                    if(seesPlayer)
+                    {
+                        OnPlayerLost();
+                    }
                 }
             }   
         } else
         {
-            seesPlayer = false;
+            if (seesPlayer)
+            {
+                OnPlayerLost();
+            }
         }
 
         Vector2 justBelowWaist = new Vector2(goingRight ? bounds.max.x : bounds.min.x, bounds.center.y - 0.25f);
@@ -147,5 +149,22 @@ public class PatrolScript : MonoBehaviour {
             rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
             timeSinceLastStep = 0;
         }
+    }
+
+    void OnSeesPlayer()
+    {
+        // On vient de le voir
+        seesPlayer = true;
+        audioS.Play();
+        // !
+        Debug.Log("SEEN");
+    }
+
+    void OnPlayerLost()
+    {
+        // On vient de le perdre
+        seesPlayer = false;
+        // ?
+        Debug.Log("LOST");
     }
 }
