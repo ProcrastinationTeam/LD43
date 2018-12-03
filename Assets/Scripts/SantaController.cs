@@ -140,7 +140,7 @@ public class SantaController : MonoBehaviour
         {
             Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
             Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
-            RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.05f, LayerMask.GetMask("Ground", "OneWay"));
+            RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.05f, LayerMask.GetMask("Ground", "OneWay", "FirstOneWay"));
 
             // Si y'a un sol juste en dessous
             if (hit.collider != null)
@@ -237,7 +237,7 @@ public class SantaController : MonoBehaviour
         hidden = true;
         sr.enabled = false;
         
-        Physics2D.IgnoreLayerCollision(LayerMask.GetMask("Player"), LayerMask.GetMask("Enemy"), true);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), true);
     }
 
     void Unhide()
@@ -247,7 +247,7 @@ public class SantaController : MonoBehaviour
         hidden = false;
         sr.enabled = true;
         
-        Physics2D.IgnoreLayerCollision(LayerMask.GetMask("Player"), LayerMask.GetMask("Enemy"), false);
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Enemy"), false);
     }
 
     // STAIRS
