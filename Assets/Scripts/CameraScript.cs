@@ -38,11 +38,11 @@ public class CameraScript : MonoBehaviour {
         
         if(catchUp)
         {
-            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y - 3.5f,     -10);
+            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 0.75f,     -10);
         }
         else if (santaController.canJump)
         {
-            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 1.25f,    -10);
+            targetPosition = new Vector3(santaController.transform.position.x, santaController.transform.position.y + 0.75f,    -10);
         } else
         {
             targetPosition = new Vector3(santaController.transform.position.x, transform.position.y,                            -10);

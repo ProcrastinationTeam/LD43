@@ -20,7 +20,9 @@ public class SantaController : MonoBehaviour
 
     // MOVEMENT
     public bool canJump = true;
-    private float baseGravity;
+    float baseGravity;
+    float timeSinceJump = 1;
+    bool jumped = false;
 
     // STAIRS
     private List<StairsScript> stairs = new List<StairsScript>();
@@ -76,6 +78,11 @@ public class SantaController : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         bool jump = Input.GetButtonDown("Jump");
         bool action = Input.GetButtonDown("Fire1");
+
+        if(jumped)
+        {
+            timeSinceJump += Time.deltaTime;
+        }
 
         if (Math.Abs(moveHorizontal) >= 0.15 && !hidden)
         {
@@ -139,7 +146,7 @@ public class SantaController : MonoBehaviour
             if (hit.collider != null)
             {
                 // Si on peut pas sauter (on était donc en train de tomber)
-                if (!canJump)
+                if (!canJump && rb.velocity.y <= 0 && timeSinceJump > 0.1f)
                 {
                     TouchedGround();
                 }
@@ -153,9 +160,8 @@ public class SantaController : MonoBehaviour
             else
             {
                 // Si on peut (encore) sauter, c'est qu'on vient de walk off
-                if (canJump && rb.velocity.y <= 0)
+                if (canJump)
                 {
-                    Debug.Log("mais je tombe");
                     Felt();
                 } 
                 // Si on peut plus, c'est qu'on tombait déjà
@@ -169,8 +175,8 @@ public class SantaController : MonoBehaviour
 
     void Jumped()
     {
-        Debug.Log("j'ai sauté");
         rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
+        jumped = true;
         LeftGround();
         goCameraGoCoroutine = GoCameraGo();
         StartCoroutine(goCameraGoCoroutine);
@@ -179,6 +185,7 @@ public class SantaController : MonoBehaviour
     void Felt()
     {
         LeftGround();
+        timeSinceJump = 1;
         camera.GoCameraGo();
     }
 
@@ -200,9 +207,10 @@ public class SantaController : MonoBehaviour
 
     public void TouchedGround()
     {
-        Debug.Log("j'ai touché par terre");
         animator.SetBool("isJumping", false);
         canJump = true;
+        jumped = false;
+        timeSinceJump = 0;
         rb.gravityScale = baseGravity;
         camera.EasyGirl();
         if(goCameraGoCoroutine != null)
