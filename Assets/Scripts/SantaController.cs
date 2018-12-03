@@ -284,6 +284,7 @@ public class SantaController : MonoBehaviour
         {
             numberOfChildrenKidnaped++;
             hasChild = false;
+            animator.SetBool("hasChild", false);
             ui.OnSantaReleased();
             if (numberOfChildrenKidnaped == numberOfChildrenBeds)
             {
@@ -340,6 +341,7 @@ public class SantaController : MonoBehaviour
         if (!hasChild)
         {
             hasChild = true;
+            animator.SetBool("hasChild", true);
             childrenBedsInReach[0].OnSantaKidnaps();
             ui.OnSantaSnatched();
         }
