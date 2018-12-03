@@ -11,6 +11,7 @@ public class ChildBedScript : MonoBehaviour {
     Sprite previous;
     SpriteRenderer sr;
 
+
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
@@ -33,16 +34,18 @@ public class ChildBedScript : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player"))
+        if (!empty)
         {
-            col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
-            sr.sprite = previous;
+            if (col.gameObject.CompareTag("Player"))
+            {
+                col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
+                sr.sprite = previous;
+            }
         }
     }
 
     public void OnSantaKidnaps()
     {
-
         GetComponent<SpriteRenderer>().sprite = emptyBedSprite;
         empty = true;
     }

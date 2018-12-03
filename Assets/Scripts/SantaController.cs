@@ -171,6 +171,8 @@ public class SantaController : MonoBehaviour
                 }
             }
         }
+
+        CheckVisiblityUse();
     }
 
     void Jumped()
@@ -294,7 +296,7 @@ public class SantaController : MonoBehaviour
         }
         else
         {
-            if (numberOfChildrenKidnaped > 0)
+            if (numberOfChildrenKidnaped == numberOfChildrenBeds)
             {
                 GoToNextScene();
             }
@@ -348,6 +350,22 @@ public class SantaController : MonoBehaviour
         else
         {
             Debug.Log("TODO: Message d'erreur");
+        }
+    }
+
+    void CheckVisiblityUse()
+    {
+        // Si une liste pas empty, afficher
+        if(childrenBedsInReach.Count > 0 
+            || fireplaces.Count > 0
+            || stairs.Count > 0
+            || hidingSpots.Count > 0)
+        {
+            ui.DisplayUseText(true);
+        }
+        else
+        {
+            ui.DisplayUseText(false);
         }
     }
 
