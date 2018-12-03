@@ -28,6 +28,8 @@ public class PatrolScript : MonoBehaviour {
     ContactFilter2D contact;
     RaycastHit2D[] hits;
 
+    Animator animator;
+
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +40,8 @@ public class PatrolScript : MonoBehaviour {
         santa = GameObject.FindGameObjectWithTag("Player").GetComponent<SantaController>();
 
         goingRight = Random.value > 0.5f;
+
+        animator = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -158,13 +162,14 @@ public class PatrolScript : MonoBehaviour {
         audioS.Play();
         // !
         Debug.Log("SEEN");
+        animator.SetBool("SeesPlayer", true);
     }
 
     void OnPlayerLost()
     {
         // On vient de le perdre
         seesPlayer = false;
-        // ?
+        animator.SetBool("SeesPlayer", false);
         Debug.Log("LOST");
     }
 }
