@@ -76,8 +76,8 @@ public class SantaController : MonoBehaviour
     void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
-        bool jump = Input.GetButtonDown("Jump");
-        bool action = Input.GetButtonDown("Fire1");
+        bool jump = Input.GetButtonDown("Fire1");
+        bool action = Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3") || Input.GetButtonDown("Jump"); ;
 
         if(jumped)
         {
