@@ -47,12 +47,11 @@ public class HidingSpotScript : MonoBehaviour {
     {
         containsSanta = true;
         sr.sprite = alternativeSprite;
-
     }
 
     public void OnSantaExits()
     {
         containsSanta = false;
-        sr.sprite = originalSprite;
+        sr.sprite = outlined;
     }
 }
