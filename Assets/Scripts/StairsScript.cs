@@ -25,10 +25,9 @@ public class StairsScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetStairs(this);
+            previous = sr.sprite;
+            sr.sprite = outlined;
         }
-
-        previous = sr.sprite;
-        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -36,8 +35,7 @@ public class StairsScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
+            sr.sprite = previous;
         }
-
-        sr.sprite = previous;
     }
 }

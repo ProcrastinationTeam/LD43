@@ -26,10 +26,9 @@ public class FireplaceScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetFireplace(this);
-        }
-
-        previous = sr.sprite;
-        sr.sprite = outlined;
+            previous = sr.sprite;
+            sr.sprite = outlined;
+        }        
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -37,9 +36,8 @@ public class FireplaceScript : MonoBehaviour {
         if(col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
+            sr.sprite = previous;
         }
-
-        sr.sprite = previous;
     }
 
     public void PlayAnim()
