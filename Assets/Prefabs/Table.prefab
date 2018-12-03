@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containsSanta: 0
   alternativeSprite: {fileID: 21300002, guid: fca74fa37efa78742a7e9378e90bf401, type: 3}
+  outlined: {fileID: 21300004, guid: fca74fa37efa78742a7e9378e90bf401, type: 3}
 --- !u!212 &212094753533625516
 SpriteRenderer:
   m_ObjectHideFlags: 1

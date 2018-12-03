@@ -28,10 +28,9 @@ public class HidingSpotScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetHidingSpot(this);
+            previous = sr.sprite;
+            sr.sprite = outlined;
         }
-
-        previous = sr.sprite;
-        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -39,9 +38,9 @@ public class HidingSpotScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetHidingSpot(this);
-        }
+            sr.sprite = previous;
 
-        sr.sprite = previous;
+        }
     }
 
     public void OnSantaEnters()
