@@ -6,9 +6,13 @@ public class StairsScript : MonoBehaviour {
 
     public StairsScript target;
 
+    public Sprite outlined;
+    Sprite previous;
+    SpriteRenderer sr;
+
     // Use this for initialization
     void Start () {
-
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -22,6 +26,9 @@ public class StairsScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().SetStairs(this);
         }
+
+        previous = sr.sprite;
+        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -30,5 +37,7 @@ public class StairsScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
         }
+
+        sr.sprite = previous;
     }
 }

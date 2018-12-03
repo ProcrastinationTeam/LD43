@@ -7,10 +7,14 @@ public class ChildBedScript : MonoBehaviour {
     public Sprite emptyBedSprite;
     public bool empty = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public Sprite outlined;
+    Sprite previous;
+    SpriteRenderer sr;
+
+    // Use this for initialization
+    void Start () {
+        sr = GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -23,6 +27,9 @@ public class ChildBedScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().SetChildBed(this);
         }
+
+        previous = sr.sprite;
+        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -31,6 +38,8 @@ public class ChildBedScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().UnsetChildBed(this);
         }
+
+        sr.sprite = previous;
     }
 
     public void OnSantaKidnaps()
