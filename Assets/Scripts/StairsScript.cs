@@ -13,10 +13,12 @@ public class StairsScript : MonoBehaviour {
     public Sprite outlined;
     Sprite previous;
     SpriteRenderer sr;
+    Animator anim;
 
     // Use this for initialization
     void Start () {
         sr = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 
         GameObject[] gos = GameObject.FindGameObjectsWithTag("Elevator");
         foreach(GameObject go in gos)
@@ -38,6 +40,7 @@ public class StairsScript : MonoBehaviour {
                 targetIsSafe = false;
                 Debug.Log(gameObject.name + " : NY VAS PAS");
                 // TODO: Lancer l'anim clignotante
+                anim.SetBool("EnemyNear", true);
             }
         } else
         {
@@ -46,6 +49,7 @@ public class StairsScript : MonoBehaviour {
                 targetIsSafe = true;
                 Debug.Log(gameObject.name + " : gogo");
                 // TODO: Lancer l'idle
+                anim.SetBool("EnemyNear", false);
             }
         }
         
@@ -56,8 +60,8 @@ public class StairsScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetStairs(this);
-            previous = sr.sprite;
-            sr.sprite = outlined;
+            anim.SetBool("PlayerNear", true);
+          
         }
     }
 
@@ -65,8 +69,9 @@ public class StairsScript : MonoBehaviour {
     {
         if (col.gameObject.CompareTag("Player"))
         {
+            anim.SetBool("PlayerNear", false);
             col.gameObject.GetComponent<SantaController>().UnsetStairs(this);
-            sr.sprite = previous;
+            
         }
     }
 }
