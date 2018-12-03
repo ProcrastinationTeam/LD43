@@ -49,7 +49,10 @@ public class UIScript : MonoBehaviour {
 
     public void OnSantaSnatched()
     {
-        StopCoroutine(hideTextCoroutine);
+        if(hideTextCoroutine != null)
+        {
+            StopCoroutine(hideTextCoroutine);
+        }
         announcementText.text = BringHimBack;
         announcementText.enabled = true;
         hideTextCoroutine = HideBigText();
@@ -58,7 +61,10 @@ public class UIScript : MonoBehaviour {
 
     public void OnSantaTriesToExitWithoutChild()
     {
-        StopCoroutine(hideTextCoroutine);
+        if (hideTextCoroutine != null)
+        {
+            StopCoroutine(hideTextCoroutine);
+        }
         announcementText.text = BringThemAll;
         announcementText.enabled = true;
         hideTextCoroutine = HideBigText();
@@ -70,7 +76,10 @@ public class UIScript : MonoBehaviour {
         if(santaController.numberOfChildrenKidnaped == santaController.numberOfChildrenBeds)
         {
             // SI DERNIER
-            StopCoroutine(hideTextCoroutine);
+            if (hideTextCoroutine != null)
+            {
+                StopCoroutine(hideTextCoroutine);
+            }
             announcementText.text = GoToFireplace;
             announcementText.enabled = true;
             hideTextCoroutine = HideBigText();
@@ -78,7 +87,10 @@ public class UIScript : MonoBehaviour {
         } else
         {
             // S'IL EN RESTE
-            StopCoroutine(hideTextCoroutine);
+            if (hideTextCoroutine != null)
+            {
+                StopCoroutine(hideTextCoroutine);
+            }
             announcementText.text = GoodJobContinue;
             announcementText.enabled = true;
             hideTextCoroutine = HideBigText();

@@ -24,14 +24,14 @@ public class FireplaceScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetFireplace(this);
-        
             slurpAnim.SetBool("PlayerNear", true);
         }        
+
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
 
@@ -42,6 +42,5 @@ public class FireplaceScript : MonoBehaviour {
     public void PlayAnim()
     {
         slurpAnim.SetTrigger("Use");
-           
     }
 }
