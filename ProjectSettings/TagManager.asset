@@ -11,7 +11,6 @@ TagManager:
   - Interactible Object
   - Elevator
   - ChildBed
-
   layers:
   - Default
   - TransparentFX
@@ -26,7 +25,7 @@ TagManager:
   - Enemy
   - Wall
   - Door
-  - 
+  - OneWay
   - 
   - 
   - 

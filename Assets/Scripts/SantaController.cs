@@ -95,12 +95,6 @@ public class SantaController : MonoBehaviour
 
         }
 
-        if (canJump && jump && !hidden)
-        {
-            rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
-            LeftGround();
-        }
-
         if (action)
         {
             // HIDE
@@ -130,25 +124,60 @@ public class SantaController : MonoBehaviour
             }
         }
 
-        Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
-        Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
-        RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.1f, LayerMask.GetMask("Ground", "OneWay"));
+        if (canJump && jump && !hidden)
+        {
+            Jumped();
+        } else
+        {
+            Bounds bounds = GetComponent<CapsuleCollider2D>().bounds;
+            Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
+            RaycastHit2D hit = Physics2D.Raycast(bottomPosition, Vector2.down, 0.05f, LayerMask.GetMask("Ground", "OneWay"));
 
-        if (hit.collider != null)
-        {
-            if (!canJump)
+            // Si y'a un sol juste en dessous
+            if (hit.collider != null)
             {
-                TouchedGround();
+                // Si on peut pas sauter (on était donc en train de tomber)
+                if (!canJump)
+                {
+                    TouchedGround();
+                }
+                // Si on peut sauter, c'est juste qu'on marche
+                else
+                {
+                    //
+                }
+            }
+            // Y'a rien juste en dessous
+            else
+            {
+                // Si on peut (encore) sauter, c'est qu'on vient de walk off
+                if (canJump && rb.velocity.y <= 0)
+                {
+                    Debug.Log("mais je tombe");
+                    Felt();
+                } 
+                // Si on peut plus, c'est qu'on tombait déjà
+                else
+                {
+                    //
+                }
             }
         }
-        else
-        {
-            // On commence à tomber
-            if (canJump)
-            {
-                LeftGround();
-            }
-        }
+    }
+
+    void Jumped()
+    {
+        Debug.Log("j'ai sauté");
+        rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
+        LeftGround();
+        goCameraGoCoroutine = GoCameraGo();
+        StartCoroutine(goCameraGoCoroutine);
+    }
+
+    void Felt()
+    {
+        LeftGround();
+        camera.GoCameraGo();
     }
 
     void LeftGround()
@@ -156,9 +185,6 @@ public class SantaController : MonoBehaviour
         animator.SetBool("isJumping", true);
         canJump = false;
         rb.gravityScale = baseGravity * afterJumpGravityMultiplier;
-
-        goCameraGoCoroutine = GoCameraGo();
-        StartCoroutine(goCameraGoCoroutine);
     }
 
     IEnumerator GoCameraGo()
@@ -167,18 +193,20 @@ public class SantaController : MonoBehaviour
         if (!canJump)
         {
             camera.GoCameraGo();
-            Debug.Log("BENEN");
         }
     }
 
     public void TouchedGround()
     {
+        Debug.Log("j'ai touché par terre");
         animator.SetBool("isJumping", false);
         canJump = true;
         rb.gravityScale = baseGravity;
         camera.EasyGirl();
-        Debug.Log("STOP");
-        StopCoroutine(goCameraGoCoroutine);
+        if(goCameraGoCoroutine != null)
+        {
+            StopCoroutine(goCameraGoCoroutine);
+        }
     }
 
     // HIDING SPOT
