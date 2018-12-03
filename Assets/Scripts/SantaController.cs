@@ -237,7 +237,7 @@ public class SantaController : MonoBehaviour
         hidden = true;
         sr.enabled = false;
         
-        Physics2D.IgnoreLayerCollision(9, 10, true);
+        Physics2D.IgnoreLayerCollision(LayerMask.GetMask("Player"), LayerMask.GetMask("Enemy"), true);
     }
 
     void Unhide()
@@ -247,8 +247,7 @@ public class SantaController : MonoBehaviour
         hidden = false;
         sr.enabled = true;
         
-        Physics2D.IgnoreLayerCollision(9, 10, false);
-
+        Physics2D.IgnoreLayerCollision(LayerMask.GetMask("Player"), LayerMask.GetMask("Enemy"), false);
     }
 
     // STAIRS
