@@ -28,12 +28,12 @@ public class FireplaceScript : MonoBehaviour {
             col.gameObject.GetComponent<SantaController>().SetFireplace(this);
             previous = sr.sprite;
             sr.sprite = outlined;
-        }        
+        }    
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+        if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
             sr.sprite = previous;
@@ -43,6 +43,5 @@ public class FireplaceScript : MonoBehaviour {
     public void PlayAnim()
     {
         slurpAnim.SetTrigger("Use");
-           
     }
 }
