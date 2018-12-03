@@ -8,11 +8,16 @@ public class PatrolScript : MonoBehaviour {
     
     public float speed;
     public float timeBetweenStairs;
+    public float jumpForce;
 
     private bool goingRight;
     private float timeSinceLastStairs = 0;
     private bool seesPlayer = false;
     private bool visionBlocked = false;
+
+    private float timeSinceLastStep = 0;
+
+    public float stepChance;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -38,6 +43,7 @@ public class PatrolScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         timeSinceLastStairs += Time.deltaTime;
+        timeSinceLastStep += Time.deltaTime;
 
         sr.flipX = !goingRight;
 
@@ -77,23 +83,31 @@ public class PatrolScript : MonoBehaviour {
 
                 if (!visionBlocked && ((rb.velocity.x > 0.0f && dir.x > 0.0f) || (rb.velocity.x < 0.0f && dir.x < 0.0f)))
                 {
-                    
-                    if (!audioS.isPlaying && !seesPlayer)
+                    if(!seesPlayer)
                     {
-                        audioS.Play();
+                        OnSeesPlayer();
                     }
-                    seesPlayer = true;
-
-                    Debug.Log("I SEE YOU");
                 } else
                 {
-                    seesPlayer = false;
+                    if(seesPlayer)
+                    {
+                        OnPlayerLost();
+                    }
                 }
             }   
         } else
         {
-            seesPlayer = false;
+            if (seesPlayer)
+            {
+                OnPlayerLost();
+            }
         }
+
+        Vector2 justBelowWaist = new Vector2(goingRight ? bounds.max.x : bounds.min.x, bounds.center.y - 0.25f);
+        Vector2 justBelowHead = new Vector2(goingRight ? bounds.max.x : bounds.min.x, bounds.max.y - 0.25f);
+        RaycastHit2D hitBelowWaist = Physics2D.Raycast(justBelowWaist, rb.velocity, 0.25f, LayerMask.GetMask("Ground", "OneWay"));
+        RaycastHit2D hitBelowWaistFirstStep = Physics2D.Raycast(justBelowWaist, rb.velocity, 0.25f, LayerMask.GetMask("FirstOneWay"));
+        RaycastHit2D hitBelowHead = Physics2D.Raycast(justBelowHead, rb.velocity, 0.25f, LayerMask.GetMask("Ground"));
 
         if (seesPlayer)
         {
@@ -101,16 +115,17 @@ public class PatrolScript : MonoBehaviour {
         }
         else
         {
-           // Debug.Log("WHERE HE IS");
-            Vector2 origin = new Vector2(bounds.center.x, bounds.min.y);
-            RaycastHit2D hit = Physics2D.Raycast(origin, rb.velocity, 0.5f, LayerMask.GetMask("Ground"));
-
-            if (hit.collider != null)
+            // Si y'a les 2, demi tour
+            if ((hitBelowWaist.collider != null || hitBelowWaistFirstStep.collider != null) && hitBelowHead.collider != null)
             {
                 goingRight = !goingRight;
             }
         }
-
+        if ((hitBelowWaist.collider != null && hitBelowHead.collider == null)
+            /*|| (hitBelowWaistFirstStep.collider != null && hitBelowHead.collider == null && Random.value > 0.95f)*/)
+        {
+            rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -121,13 +136,35 @@ public class PatrolScript : MonoBehaviour {
             timeSinceLastStairs = 0;
         }
 
-        Debug.Log("TRIGGER PATROL");
-        Debug.Log("TAG : " + col.tag );
         if (seesPlayer && col.CompareTag("Player"))
         {
-            Debug.Log("END GAME");
             SceneManager.LoadScene("RetryScene");
         }
-        
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.layer == LayerMask.NameToLayer("FirstOneWay") && Random.value > stepChance && timeSinceLastStep > 1.0f)
+        {
+            rb.AddForce(new Vector3(0.0f, jumpForce, 0.0f));
+            timeSinceLastStep = 0;
+        }
+    }
+
+    void OnSeesPlayer()
+    {
+        // On vient de le voir
+        seesPlayer = true;
+        audioS.Play();
+        // !
+        Debug.Log("SEEN");
+    }
+
+    void OnPlayerLost()
+    {
+        // On vient de le perdre
+        seesPlayer = false;
+        // ?
+        Debug.Log("LOST");
     }
 }
