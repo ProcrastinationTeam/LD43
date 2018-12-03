@@ -6,10 +6,14 @@ public class FireplaceScript : MonoBehaviour {
 
     Animator slurpAnim;
 
-	// Use this for initialization
-	void Start () {
-        slurpAnim = GetComponent<Animator>();
+    public Sprite outlined;
+    Sprite previous;
+    SpriteRenderer sr;
 
+    // Use this for initialization
+    void Start () {
+        slurpAnim = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 	
 	// Update is called once per frame
@@ -23,6 +27,9 @@ public class FireplaceScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().SetFireplace(this);
         }
+
+        previous = sr.sprite;
+        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -31,7 +38,8 @@ public class FireplaceScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
         }
-        
+
+        sr.sprite = previous;
     }
 
     public void PlayAnim()

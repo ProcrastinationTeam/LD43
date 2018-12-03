@@ -8,10 +8,12 @@ public class HidingSpotScript : MonoBehaviour {
     private Sprite originalSprite;
     public Sprite alternativeSprite;
 
-    private SpriteRenderer sr;
+    public Sprite outlined;
+    Sprite previous;
+    SpriteRenderer sr;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         sr = GetComponent<SpriteRenderer>();
         originalSprite = sr.sprite;
     }
@@ -27,6 +29,9 @@ public class HidingSpotScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().SetHidingSpot(this);
         }
+
+        previous = sr.sprite;
+        sr.sprite = outlined;
     }
 
     void OnTriggerExit2D(Collider2D col)
@@ -35,6 +40,8 @@ public class HidingSpotScript : MonoBehaviour {
         {
             col.gameObject.GetComponent<SantaController>().UnsetHidingSpot(this);
         }
+
+        sr.sprite = previous;
     }
 
     public void OnSantaEnters()
