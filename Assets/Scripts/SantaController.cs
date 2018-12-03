@@ -285,6 +285,7 @@ public class SantaController : MonoBehaviour
             numberOfChildrenKidnaped++;
             hasChild = false;
             animator.SetBool("hasChild", false);
+            fireplaces[0].PlayAnim();
             ui.OnSantaReleased();
             if (numberOfChildrenKidnaped == numberOfChildrenBeds)
             {

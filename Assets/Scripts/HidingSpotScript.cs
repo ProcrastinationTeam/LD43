@@ -41,6 +41,7 @@ public class HidingSpotScript : MonoBehaviour {
     {
         containsSanta = true;
         sr.sprite = alternativeSprite;
+
     }
 
     public void OnSantaExits()

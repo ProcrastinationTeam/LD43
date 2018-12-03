@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class FireplaceScript : MonoBehaviour {
 
+    Animator slurpAnim;
+
 	// Use this for initialization
 	void Start () {
-		
-	}
+        slurpAnim = GetComponent<Animator>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,5 +32,11 @@ public class FireplaceScript : MonoBehaviour {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
         }
         
+    }
+
+    public void PlayAnim()
+    {
+        slurpAnim.SetTrigger("Use");
+           
     }
 }
