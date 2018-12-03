@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: fca74fa37efa78742a7e9378e90bf401
+guid: a71504b188819ca49947bde970e82240
 TextureImporter:
   fileIDToRecycleName:
-    21300000: table_0
-    21300002: table_1
+    21300000: sofa_0
+    21300002: sofa_1
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -86,12 +86,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: table_0
+      name: sofa_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -100,18 +100,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0087c232a81b9fd449e69b856aeb816a
+      spriteID: 86873ec31e12ce7439609d8ff67b16b9
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: table_1
+      name: sofa_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
+        width: 48
         height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c840a6c2378e0634994baed89d9fa372
+      spriteID: 11f3990125639bc42b649effcb98ddd8
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e37b268d6fd8bff4a8ec700009a17989
+    spriteID: 193b1bdb06cdcd0469aba93abe108494
     vertices: []
     indices: 
     edges: []
