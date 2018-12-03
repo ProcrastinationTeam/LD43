@@ -6,8 +6,6 @@ public class FireplaceScript : MonoBehaviour {
 
     Animator slurpAnim;
 
-    public Sprite outlined;
-    Sprite previous;
     SpriteRenderer sr;
 
     // Use this for initialization
@@ -26,8 +24,8 @@ public class FireplaceScript : MonoBehaviour {
         if (col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().SetFireplace(this);
-            previous = sr.sprite;
-            sr.sprite = outlined;
+        
+            slurpAnim.SetBool("PlayerNear", true);
         }        
     }
 
@@ -36,7 +34,8 @@ public class FireplaceScript : MonoBehaviour {
         if(col.gameObject.CompareTag("Player"))
         {
             col.gameObject.GetComponent<SantaController>().UnsetFireplace(this);
-            sr.sprite = previous;
+
+            slurpAnim.SetBool("PlayerNear", false);
         }
     }
 

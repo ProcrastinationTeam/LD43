@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32bffc21b5433b547b9fb621cf43089e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorOpen: {fileID: 0}
-  doorClose: {fileID: 0}
+  doorOpen: {fileID: 21300002, guid: 081ce1a6b6d4b894e80f19ebefb1e680, type: 3}
+  doorClose: {fileID: 21300000, guid: 081ce1a6b6d4b894e80f19ebefb1e680, type: 3}
 --- !u!212 &212450615325317564
 SpriteRenderer:
   m_ObjectHideFlags: 1
